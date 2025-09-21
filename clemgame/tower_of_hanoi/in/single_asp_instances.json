@@ -21,19 +21,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 3,
           "align": "horizontal",
           "peg_names": "alpha",
           "disk_order": "ascending",
           "initial_board": "   |       |       |   \n  -3-      |       |   \n --2--     |       |   \n---1---    |       |   \n   A       B       C   \n",
           "max_moves": 12.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n   |       |       |   \n  -3-      |       |   \n --2--     |       |   \n---1---    |       |   \n   A       B       C   \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 16 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 16,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n   |       |       |   \n  -3-      |       |   \n --2--     |       |   \n---1---    |       |   \n   A       B       C   \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -58,19 +62,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 3,
           "align": "horizontal",
           "peg_names": "alpha",
           "disk_order": "descending",
           "initial_board": "   |       |       |   \n  -1-      |       |   \n --2--     |       |   \n---3---    |       |   \n   A       B       C   \n",
           "max_moves": 12.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n   |       |       |   \n  -1-      |       |   \n --2--     |       |   \n---3---    |       |   \n   A       B       C   \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 16 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 16,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n   |       |       |   \n  -1-      |       |   \n --2--     |       |   \n---3---    |       |   \n   A       B       C   \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -95,19 +103,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 3,
           "align": "vertical",
           "peg_names": "alpha",
           "disk_order": "ascending",
           "initial_board": "A: 1 2 3 \nB: \nC: \n",
           "max_moves": 12.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 1 2 3 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 16 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 16,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 1 2 3 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -132,19 +144,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 3,
           "align": "vertical",
           "peg_names": "alpha",
           "disk_order": "descending",
           "initial_board": "A: 3 2 1 \nB: \nC: \n",
           "max_moves": 12.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 3 2 1 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 16 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 16,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 3 2 1 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -169,19 +185,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 4,
           "align": "horizontal",
           "peg_names": "alpha",
           "disk_order": "ascending",
           "initial_board": "    |         |         |    \n   -4-        |         |    \n  --3--       |         |    \n ---2---      |         |    \n----1----     |         |    \n    A         B         C    \n",
           "max_moves": 24.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n    |         |         |    \n   -4-        |         |    \n  --3--       |         |    \n ---2---      |         |    \n----1----     |         |    \n    A         B         C    \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 32 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 32,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n    |         |         |    \n   -4-        |         |    \n  --3--       |         |    \n ---2---      |         |    \n----1----     |         |    \n    A         B         C    \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -206,19 +226,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 4,
           "align": "horizontal",
           "peg_names": "alpha",
           "disk_order": "descending",
           "initial_board": "    |         |         |    \n   -1-        |         |    \n  --2--       |         |    \n ---3---      |         |    \n----4----     |         |    \n    A         B         C    \n",
           "max_moves": 24.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n    |         |         |    \n   -1-        |         |    \n  --2--       |         |    \n ---3---      |         |    \n----4----     |         |    \n    A         B         C    \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 32 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 32,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n    |         |         |    \n   -1-        |         |    \n  --2--       |         |    \n ---3---      |         |    \n----4----     |         |    \n    A         B         C    \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -243,19 +267,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 4,
           "align": "vertical",
           "peg_names": "alpha",
           "disk_order": "ascending",
           "initial_board": "A: 1 2 3 4 \nB: \nC: \n",
           "max_moves": 24.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 1 2 3 4 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 32 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 32,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 1 2 3 4 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -280,19 +308,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 4,
           "align": "vertical",
           "peg_names": "alpha",
           "disk_order": "descending",
           "initial_board": "A: 4 3 2 1 \nB: \nC: \n",
           "max_moves": 24.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 4 3 2 1 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 32 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 32,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 4 3 2 1 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -317,19 +349,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 5,
           "align": "horizontal",
           "peg_names": "alpha",
           "disk_order": "ascending",
           "initial_board": "     |           |           |     \n    -5-          |           |     \n   --4--         |           |     \n  ---3---        |           |     \n ----2----       |           |     \n-----1-----      |           |     \n     A           B           C     \n",
           "max_moves": 48.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n     |           |           |     \n    -5-          |           |     \n   --4--         |           |     \n  ---3---        |           |     \n ----2----       |           |     \n-----1-----      |           |     \n     A           B           C     \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 64 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 64,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n     |           |           |     \n    -5-          |           |     \n   --4--         |           |     \n  ---3---        |           |     \n ----2----       |           |     \n-----1-----      |           |     \n     A           B           C     \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -354,19 +390,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 5,
           "align": "horizontal",
           "peg_names": "alpha",
           "disk_order": "descending",
           "initial_board": "     |           |           |     \n    -1-          |           |     \n   --2--         |           |     \n  ---3---        |           |     \n ----4----       |           |     \n-----5-----      |           |     \n     A           B           C     \n",
           "max_moves": 48.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n     |           |           |     \n    -1-          |           |     \n   --2--         |           |     \n  ---3---        |           |     \n ----4----       |           |     \n-----5-----      |           |     \n     A           B           C     \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 64 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 64,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n     |           |           |     \n    -1-          |           |     \n   --2--         |           |     \n  ---3---        |           |     \n ----4----       |           |     \n-----5-----      |           |     \n     A           B           C     \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -391,19 +431,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 5,
           "align": "vertical",
           "peg_names": "alpha",
           "disk_order": "ascending",
           "initial_board": "A: 1 2 3 4 5 \nB: \nC: \n",
           "max_moves": 48.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 1 2 3 4 5 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 64 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 64,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 1 2 3 4 5 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -428,19 +472,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 5,
           "align": "vertical",
           "peg_names": "alpha",
           "disk_order": "descending",
           "initial_board": "A: 5 4 3 2 1 \nB: \nC: \n",
           "max_moves": 48.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 5 4 3 2 1 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 64 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 64,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 5 4 3 2 1 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -465,19 +513,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 6,
           "align": "horizontal",
           "peg_names": "alpha",
           "disk_order": "ascending",
           "initial_board": "      |             |             |      \n     -6-            |             |      \n    --5--           |             |      \n   ---4---          |             |      \n  ----3----         |             |      \n -----2-----        |             |      \n------1------       |             |      \n      A             B             C      \n",
           "max_moves": 96.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n      |             |             |      \n     -6-            |             |      \n    --5--           |             |      \n   ---4---          |             |      \n  ----3----         |             |      \n -----2-----        |             |      \n------1------       |             |      \n      A             B             C      \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 128 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 128,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n      |             |             |      \n     -6-            |             |      \n    --5--           |             |      \n   ---4---          |             |      \n  ----3----         |             |      \n -----2-----        |             |      \n------1------       |             |      \n      A             B             C      \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -502,19 +554,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 6,
           "align": "horizontal",
           "peg_names": "alpha",
           "disk_order": "descending",
           "initial_board": "      |             |             |      \n     -1-            |             |      \n    --2--           |             |      \n   ---3---          |             |      \n  ----4----         |             |      \n -----5-----        |             |      \n------6------       |             |      \n      A             B             C      \n",
           "max_moves": 96.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n      |             |             |      \n     -1-            |             |      \n    --2--           |             |      \n   ---3---          |             |      \n  ----4----         |             |      \n -----5-----        |             |      \n------6------       |             |      \n      A             B             C      \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 128 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 128,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n      |             |             |      \n     -1-            |             |      \n    --2--           |             |      \n   ---3---          |             |      \n  ----4----         |             |      \n -----5-----        |             |      \n------6------       |             |      \n      A             B             C      \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -539,19 +595,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 6,
           "align": "vertical",
           "peg_names": "alpha",
           "disk_order": "ascending",
           "initial_board": "A: 1 2 3 4 5 6 \nB: \nC: \n",
           "max_moves": 96.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 1 2 3 4 5 6 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 128 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 128,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 1 2 3 4 5 6 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     },
@@ -576,19 +636,23 @@
             "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
             "game_start": "[GAME MASTER] What is your first move?"
           },
-          "turn_type": "multi",
+          "turn_type": "single",
           "num_disks": 6,
           "align": "vertical",
           "peg_names": "alpha",
           "disk_order": "descending",
           "initial_board": "A: 6 5 4 3 2 1 \nB: \nC: \n",
           "max_moves": 96.0,
-          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 6 5 4 3 2 1 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 128 turns to finish the game.\n\nPlease make your first move!",
-          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
-          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
-          "max_turns": 128,
-          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
-          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 6 5 4 3 2 1 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nPlease enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'",
+          "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+          "tries": {
+            "sg": "try",
+            "pl": "tries"
+          },
+          "max_turns": 3,
+          "new_turn_prompt": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left.",
+          "move_pattern": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format."
         }
       ]
     }

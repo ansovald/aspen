@@ -1,6 +1,7 @@
 from ast import Dict, parse
 from clingo.control import Control
-from clingo.symbol import Function, Number, String
+from clingo.symbol import Function, Number
+from clingo.core import MessageCode
 import os
 import logging
 from copy import deepcopy
@@ -9,6 +10,9 @@ from typing import TypedDict
 
 logger = logging.getLogger(__name__)
 
+def control_logger(code: MessageCode, message: str) -> None:
+    message = message.strip().replace('\n', ' ')
+    logger.info(f"Clingo [{code.name}]: {message}")
 
 class GameState:
     def __init__(self, num_disks, align="vertical", peg_names="alpha", disk_order="descending"):
@@ -128,13 +132,16 @@ def parse_standardized_state(state_str: str):
         disks = match.group("disks").split(",") if match.group("disks").strip() != "" else []
         for disk in disks:
             disk_id = disk.strip()
-            assert disk_id.isdigit(), f"<disk_id> '{disk_id}' is not a valid integer"
-            assert not disk_id in disk_list, f"you used <disk_id> '{disk_id}' more than once"
+            if not disk_id.isdigit():
+                return False, f"<disk_id> '{disk_id}' is not a valid integer"
+            if disk_id in disk_list:
+                return False, f"you used <disk_id> '{disk_id}' more than once"
             asp_instance.append(f"disk({disk_id}).")
             asp_instance.append(f"init_on({disk_id}, \"{peg}\").")
-    assert len(pegs) > 0, f"I couldn't find any pegs in your message"
+    if len(pegs) == 0:
+        return False, f"I couldn't find any pegs in your message"
     asp_instance.append(f"goal_on(D,\"{pegs[-1]}\") :- disk(D).")
-    return "\n".join(asp_instance)
+    return True, "\n".join(asp_instance)
 
 class Move(TypedDict):
     disk: int
@@ -143,7 +150,7 @@ class Move(TypedDict):
 
 class InstanceSolver:
     def __init__(self, instance):
-        self.ctl = Control()
+        self.ctl = Control(logger=control_logger)
         encoding_path = os.path.join(os.path.dirname(__file__), "tohE.lp")
         self.ctl.load(encoding_path)
         self.ctl.add("check", ["t"], "#external query(t).")
@@ -220,3 +227,10 @@ if __name__ == "__main__":
         # # print(game_state.to_asp())
         # solvable, steps = game_state.check_solvable(200)
         # print(f"Solvable: {solvable} in {steps} steps")
+
+    message = "A: [5, 4, 3, 2, 1]\nB: []\nC: []\n\nMove: [A C]"
+    success, asp_instance = parse_standardized_state(message)
+    print(asp_instance)
+    instance_solver = InstanceSolver(asp_instance)
+    solvable, steps = instance_solver.solve(parse_model=True, max_steps=200)
+    print(f"Solvable: {solvable} in {steps} steps")

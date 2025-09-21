@@ -1,0 +1,41 @@
+{
+  "experiments": [
+    {
+      "name": "toh_5_disks_vertical_alpha_ascending",
+      "game_instances": [
+        {
+          "game_id": 0,
+          "asp": true,
+          "asp_prompts": {
+            "preliminary_prompts": {
+              "start": "[ASPEN] Hello, I am Aspen, and I'm here to help you solve the game master's puzzle.\n\nPlease reformulate the current game configuration in a way I can understand, so I can help you find an efficient solution.\n\nFirst of all, please describe the game board in no more than three sentences: How many pegs are there, how many disks are there, and how are the disks arranged on the pegs? Remember that the disks are always ordered by size, with the largest disk at the bottom and the smallest disk at the top of each peg. Pegs can be arranged horizontally or vertically, but the bottom is always closest to the peg label.\n\nPlease provide me with this information in a concise manner, without any additional commentary or information.",
+              "prelim_disk": "[ASPEN] Well done! Now you have to identify the disks ordered by size. If the pegs are arranged in text lines, then the disks to the **left** are **bigger** than the ones on the **right**. If the pegs are arranged in stacks or columns, then the **lower** disks are always **bigger** than the ones **above**.\n\nYou have to map the labels of the disks to numbers, where \"1\" is the biggest disk, \"2\" is the second biggest, and so on. Note that the labels might alos be letters, or numbers in the reverse order. Please provide me with a list of all disks in the format `<label>: <ID>`, starting with the largest, where `<label>` is the label used in the original message by the game master, and '<ID>' is the identifier that I need.\n\nFor example, if we have 5 disks in total, and they are labeled \"A\", \"B\", \"C\", \"D\" and \"E\", where \"A\" is the largest disk and \"E\" is the smallest, then you have to write:\n\n```\nA: 1\nB: 2\nC: 3\nD: 4\nE: 5\n```\n\nIf there are four disks labeled \"D\", \"C\", \"B\", \"A\", where \"D\" is the largest disk and \"A\" the smallest one, then you have to write:\n\n```\nD: 1\nC: 2\nB: 3\nA: 4\n```\n\nIf there are four disks labeled \"1\", \"2\", \"3\", \"4\", where \"1\" is the largest disk and \"4\" the smallest one, then the `<label>` and `<ID>` match:\n\n```\n1: 1\n2: 2\n3: 3\n4: 4\n```\n\nIf there are five disks labeled \"5\", \"4\", \"3\", \"2\", \"1\", where \"5\" is the largest disk and \"1\" the smallest one, then the order of `<label>` and `<ID>` are reversed:\n\n```\n5: 1\n4: 2\n3: 3\n2: 4\n1: 5\n```\n\nIf the disks are named differently, or there are more or less disks than in the examples, you have to adapt accordingly. Remember that the disks to the **bottom** are largest and the disks towards the **top** are the smallest if the pegs are arranged as columns, and if the pegs are arranged as text lines, then the ones to the **left** are the largest and the one to the **right** are the smallest.",
+              "prelim_state": "[ASPEN] Excellent! Great job on the disk list!\n\nRemember it well, you will need it later. The last thing you need to do so I can help you devise a strategy is use the mappings from both lists to parse the current game state into the following standardized format:\n\n```\n<peg>: [<disk_id>, <disk_id>, ...]\n```\n\nIf a peg is empty, you still have to reproduce it like this:\n\n```\n<peg>: []\n```\n\nAdditionally, please write the format specified in the game master's message with which you can move disks down in one line like this for yourself to remember:\n\n```\nMove: <command>\n```"
+            },
+            "ground_error": "[ASPEN] I couldn't find a solution to that configuration, are you sure it's correct? Please try again!",
+            "parse_error": "[ASPEN] That didn't work, $reason. Please try again!",
+            "prelim_end": {
+              "success": "[ASPEN] Ok, given the information you have provided me, I think the best plan of action is this:\n\n```\n$move_list\n```\n\nRemember that the disk and peg IDs are the ones from the lists you provided earlier and do not necessarily match the labels in the game.\n\nYou're on your own now, good luck!",
+              "failure": "[ASPEN] Sorry, I could not find a valid solution with the given information. I can't help you any further, you're on your own now. Good luck!"
+            },
+            "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
+            "game_start": "[GAME MASTER] What is your first move?"
+          },
+          "turn_type": "multi",
+          "num_disks": 5,
+          "align": "vertical",
+          "peg_names": "alpha",
+          "disk_order": "ascending",
+          "initial_board": "A: 1 2 3 4 5 \nB: \nC: \n",
+          "max_moves": 48.0,
+          "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named A, B, C.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\nA: 1 2 3 4 5 \nB: \nC: \n\n```\n\nYou can make your moves by specifying the disk you want to move and the destination peg. For example, to move a disk from A to C, you would say: '[A C]'\n\nYou have 64 turns to finish the game.\n\nPlease make your first move!",
+          "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
+          "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
+          "max_turns": 64,
+          "new_turn_prompt": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
+          "move_pattern": "\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+        }
+      ]
+    }
+  ]
+}

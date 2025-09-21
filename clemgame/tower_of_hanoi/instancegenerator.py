@@ -4,6 +4,8 @@ import os
 import logging
 import re
 
+from numpy import single
+
 from clemcore.clemgame import GameInstanceGenerator
 from resources.game_state import GameState
 from string import Template
@@ -11,13 +13,13 @@ from string import Template
 logger = logging.getLogger(__name__)
 
 N_INSTANCES = 1
-DISK_RANGE = range(3, 7) #8)  # Number of disks to generate instances for
+DISK_RANGE = range(3, 7)  # Number of disks to generate instances for
 # ALIGNMENTS = ["vertical"] #, "horizontal"]
 ALIGNMENTS = ["horizontal", "vertical"]
 PEG_NAMES = ["alpha"] #, "num"]
 DISK_ORDERS = ["ascending", "descending"]
 # DISK_ORDERS = ["descending"]
-TURN_TYPES = ["single", "multi", "multi_asp"]
+TURN_TYPES = ["single", "multi", "multi_asp", "single_asp"]
 
 class ToHInstanceGenerator(GameInstanceGenerator):
 
@@ -25,7 +27,7 @@ class ToHInstanceGenerator(GameInstanceGenerator):
         super().__init__(os.path.dirname(__file__))
 
     def on_generate(self, seed, turn_type, **kwargs):
-        self.turn_type = turn_type.split("_")[0]  # "single" or "multi" (also from "multi_asp")
+        self.turn_type = turn_type.split("_")[0]  # "single" or "multi" (also from "multi_asp", "single_asp")
         if "asp" in turn_type:
             self.asp = True
         else:
@@ -56,6 +58,7 @@ class ToHInstanceGenerator(GameInstanceGenerator):
                             source_peg=game_state.peg_names[0],
                             destination_peg=game_state.peg_names[2]
                         )
+                        default_instance["max_moves"] = 2 ** disk_n * 1.5  # There might be configurations which need way more than the optimal number of moves
                         if self.turn_type == "multi":
                             max_turns = 2 ** disk_n * 2  # Allow twice + 2 the optimal number of moves
                             default_instance["initial_prompt"] = initial_prompt + Template(prompts["start_message"]).substitute(

@@ -28,5 +28,15 @@
         "image": "none",
         "languages": ["en"],
         "roles": ["Solver", "ASP Assistant"]
+    },
+    {
+        "game_name": "toh_single_asp",
+        "description": "Tower of Hanoi with LLM-assisted ASP reasoning",
+        "instances": "single_asp_instances",
+        "main_game": "toh",
+        "players": 1,
+        "image": "none",
+        "languages": ["en"],
+        "roles": ["Solver", "ASP Assistant"]
     }
 ]
