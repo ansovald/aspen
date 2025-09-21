@@ -1,0 +1,22 @@
+{
+    "initial_prompt": "[GAME MASTER] You are playing the game 'Tower of Hanoi'. Your goal is to move all disks from the first peg to the last peg, following these rules:\n1. Only one disk can be moved at a time.\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty peg.\n3. No larger disk may be placed on top of a smaller disk.\n\nThe pegs are named $peg_names.\n\nThe game starts with all disks stacked in ascending order of size on the first peg, with the smallest disk at the top.\n\nHere is the initial configuration of the game:\n\n```\n$initial_board\n```\n\nYou can make your moves by specifying the source peg and the destination peg. For example, to move a disk from $source_peg to $destination_peg, you would say: '[$source_peg $destination_peg]'\n\n",
+    "start_message": {
+        "multi": "You have $max_turns turns to finish the game.\n\nPlease make your first move!",
+        "single": "Please enumerate all moves necessary to finish the game in order, separated by commas. For example: '1. [A C], 2. [A B], 3. [C B]'"
+    },
+    "new_turn_prompt": {
+        "multi": "[GAME MASTER] Here is the current configuration of the game:\n\n```\n$current_board\n```\n\nYou have $remaining_turns turns left. Please make your next move.",
+        "single": "[GAME MASTER] You failed at move $move because $reason. You have $remaining_turns $tries left."
+    },
+    "move_pattern": {
+        "multi": "\\[(?P<source>\\w) +(?P<target>\\w)\\]",
+        "single": "(?P<move_n>\\d+)\\. +\\[(?P<source>\\w) +(?P<target>\\w)\\]"
+    },
+    "parse_error_message": "[GAME MASTER] Your response could not be parsed. Please follow the specified format.",
+    "rule_violation_message": "[GAME MASTER] Error: $reason. Please try again!",
+    "not_finished": "[GAME MASTER] You failed because not all disks are on the last peg. You have $remaining_turns $tries left.",
+    "tries": {
+        "sg": "try",
+        "pl": "tries"
+    }
+}

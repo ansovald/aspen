@@ -1,0 +1,32 @@
+[
+    {
+        "game_name": "toh_multi_turn",
+        "description": "Tower of Hanoi",
+        "instances": "multi_instances",
+        "main_game": "toh",
+        "players": 1,
+        "image": "none",
+        "languages": ["en"],
+        "roles": ["Solver"]
+    },
+    {
+        "game_name": "toh_single_turn",
+        "description": "Tower of Hanoi",
+        "instances": "single_instances",
+        "main_game": "toh",
+        "players": 1,
+        "image": "none",
+        "languages": ["en"],
+        "roles": ["Solver"]
+    },
+    {
+        "game_name": "toh_multi_asp",
+        "description": "Tower of Hanoi with LLM-assisted ASP reasoning",
+        "instances": "multi_asp_instances",
+        "main_game": "toh",
+        "players": 1,
+        "image": "none",
+        "languages": ["en"],
+        "roles": ["Solver", "ASP Assistant"]
+    }
+]
