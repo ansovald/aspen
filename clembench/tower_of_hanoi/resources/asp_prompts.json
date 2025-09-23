@@ -10,6 +10,5 @@
         "success": "[ASPEN] Ok, given the information you have provided me, I think the best plan of action is this:\n\n```\n$move_list\n```\n\nRemember that the disk and peg IDs are the ones from the lists you provided earlier and do not necessarily match the labels in the game.\n\nYou're on your own now, good luck!",
         "failure": "[ASPEN] Sorry, I could not find a valid solution with the given information. I can't help you any further, you're on your own now. Good luck!"
     },
-    "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg.",
-    "game_start": "[GAME MASTER] What is your first move?"
+    "move_template": "$turn. Move disk $disk from peg $from_peg to peg $to_peg."
 }

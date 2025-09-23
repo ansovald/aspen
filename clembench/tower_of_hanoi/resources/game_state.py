@@ -1,12 +1,10 @@
-from ast import Dict, parse
 from clingo.control import Control
 from clingo.symbol import Function, Number
 from clingo.core import MessageCode
 import os
 import logging
-from copy import deepcopy
 import re
-from typing import TypedDict
+from typing import TypedDict, Dict
 
 logger = logging.getLogger(__name__)
 
@@ -207,30 +205,21 @@ class InstanceSolver:
 
 if __name__ == "__main__":
     configs = [
-        {"num_disks": 6, "align": "vertical", "peg_names": "alpha", "disk_order": "ascending"},
-        {"num_disks": 6, "align": "vertical", "peg_names": "alpha", "disk_order": "descending"},
-        {"num_disks": 6, "align": "vertical", "peg_names": "num", "disk_order": "descending"},
-        {"num_disks": 6, "align": "vertical", "peg_names": "num", "disk_order": "ascending"},
-        # {"num_disks": 5, "align": "horizontal", "peg_names": "alpha", "disk_order": "ascending"},
-        # {"num_disks": 5, "align": "horizontal", "peg_names": "alpha", "disk_order": "descending"},
-        # {"num_disks": 5, "align": "horizontal", "peg_names": "num", "disk_order": "ascending"},
-        # {"num_disks": 5, "align": "horizontal", "peg_names": "num", "disk_order": "descending"},
+            {"num_disks": 3, "align": "vertical", "peg_names": "alpha", "disk_order": "ascending"},
+            {"num_disks": 3, "align": "vertical", "peg_names": "alpha", "disk_order": "descending"},
+            {"num_disks": 3, "align": "horizontal", "peg_names": "alpha", "disk_order": "ascending"},
+            {"num_disks": 3, "align": "horizontal", "peg_names": "alpha", "disk_order": "descending"},
+            # {"num_disks": 3, "align": "vertical", "peg_names": "num", "disk_order": "descending"},
+            # {"num_disks": 3, "align": "vertical", "peg_names": "num", "disk_order": "ascending"},
+            # {"num_disks": 5, "align": "horizontal", "peg_names": "alpha", "disk_order": "ascending"},
+            # {"num_disks": 5, "align": "horizontal", "peg_names": "alpha", "disk_order": "descending"},
+            # {"num_disks": 5, "align": "horizontal", "peg_names": "num", "disk_order": "ascending"},
+            # {"num_disks": 5, "align": "horizontal", "peg_names": "num", "disk_order": "descending"},
     ]
-    # for config in configs:
-        # print(config)
-        # game_state = GameState(**config)
-        # print(game_state)
-        # _, _ = game_state.move_disk("A", "B")
-        # print(game_state)
-        # success, message = game_state.move_disk("A", "B")
-        # print(f"Move A to B: {success}, {message}")
-        # # print(game_state.to_asp())
-        # solvable, steps = game_state.check_solvable(200)
-        # print(f"Solvable: {solvable} in {steps} steps")
-
-    message = "A: [5, 4, 3, 2, 1]\nB: []\nC: []\n\nMove: [A C]"
-    success, asp_instance = parse_standardized_state(message)
-    print(asp_instance)
-    instance_solver = InstanceSolver(asp_instance)
-    solvable, steps = instance_solver.solve(parse_model=True, max_steps=200)
-    print(f"Solvable: {solvable} in {steps} steps")
+    print("Game state examples:")
+    for config in configs:
+        game_state = GameState(**config)
+        state_string = str(game_state)
+        state_string = state_string.replace('\n', '\\\\\n').replace(' ', '\\ ')
+        print(f"Config: {config}")
+        print(state_string)

@@ -1,10 +1,5 @@
-from math import e
-from mimetypes import init
 import os
 import logging
-import re
-
-from numpy import single
 
 from clemcore.clemgame import GameInstanceGenerator
 from resources.game_state import GameState

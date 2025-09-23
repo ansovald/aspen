@@ -1,20 +1,13 @@
-from math import exp
 import re
-import os
 import logging
 import random
 from string import Template
-import trace
-from typing import List, Dict, Optional
-import numpy as np
+from typing import List, Dict
 from copy import deepcopy
 
-from regex import P
-
-from clemcore.backends import Model, HumanModel, CustomResponseModel
+from clemcore.backends import Model
 from clemcore.clemgame import GameSpec, GameMaster, GameBenchmark, Player, DialogueGameMaster, GameScorer, ParseError, ProtocolError
 from clemcore.clemgame.metrics import METRIC_ABORTED, METRIC_SUCCESS, METRIC_LOSE, BENCH_SCORE
-from clemcore.clemgame.events import GameEventSource
 from resources.game_state import GameState, InstanceSolver, parse_standardized_state
 
 logger = logging.getLogger(__name__)
