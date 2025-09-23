@@ -1,0 +1,2 @@
+clemcore==3.3.2
+clingo==5.8.0
