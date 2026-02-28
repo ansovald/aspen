@@ -1,8 +1,8 @@
 # ASPEN
 
-This repository contains a proof-of-concept implementation of ASPEN, an ASP-enhanced assistant for dialogue games. It aims at combining the ability of LLMs to process diverse input data with the srictly logical problem solving capability of ASP (Answer Set Programming).
+This repository contains a proof-of-concept implementation of ASPEN, an ASP-enhanced assistant for dialogue games. It aims at combining the ability of LLMs to process diverse input data with the srictly logical problem solving capability of ASP (Answer Set Programming) as a contribution to neuro-symbolic computing.
 
-This repository contains several variants of the puzzle game *Tower of Hanoi* implemented as a dialogue game in the Clembench framework with both pure-LLM and ASPEN game modes.
+This repository contains several variants of the puzzle game *Tower of Hanoi* implemented as a dialogue game in the [Clembench](https://clembench.github.io/) framework with both pure-LLM and ASPEN game modes.
 
 ## Usage
 
@@ -13,7 +13,7 @@ To run a game, use the following command: `clem run -g <GAME_MODE> -m <MODEL>`
 * Standard mode: `toh_multi_turn`, `toh_single_turn`
 * ASPEN mode: `toh_multi_asp`, `toh_single_asp`
 
-For available models, see the [clemcore repository](https://github.com/clp-research/clemcore/)
+For available models, see the [clemcore repository](https://github.com/clp-research/clemcore/).
 
 ## Game variants
 
@@ -47,7 +47,8 @@ ASPEN is an assistant persona that is introduced after the initial game prompt. 
 1. Ask for a concise description of the current game state in three sentences,
 covering number of pegs, number of disks, and disk arrangement, without any formal constraints.
 2. Try to make the model understand disk configuration.
-3. Elicit a standardized game description, with each peg represented as a line, followed by a colon and the disks.
+3. Elicit a standardized game description, with each peg represented as a line, followed by a colon and the disks in square brackets:
+```<peg>: [<disk_id>, <disk_id>, ...]```
 
 For the full prompts, see `./clembench/tower_of_hanoi/resources/asp_prompts.json`
 
